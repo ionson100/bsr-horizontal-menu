@@ -1,6 +1,6 @@
 import React, {Children, ReactNode} from "react";
 import {v4 as uuidv4} from 'uuid';
-import {IPropMenu} from "./Menu";
+
 
 
 interface IState {
@@ -22,15 +22,15 @@ type PropsMenuItems = {
 }
 
 export default class MenuItem extends React.Component<PropsMenuItems, IState> {
-    private readonly mRefPopup: React.RefObject<HTMLDivElement | null>;
-    private readonly mRefLi: React.RefObject<HTMLDivElement | null>;
+    private readonly mRefPopup= React.createRef<HTMLDivElement>();
+    private readonly mRefMenuItem= React.createRef<HTMLDivElement>()
     public readonly id: string;
     public href?: string | undefined
 
     constructor(props: Readonly<PropsMenuItems>) {
         super(props);
-        this.mRefPopup = React.createRef<HTMLDivElement>();
-        this.mRefLi = React.createRef<HTMLDivElement>()
+
+
         this.omMouseOver = this.omMouseOver.bind(this)
         this.omMouseOut = this.omMouseOut.bind(this)
         this.innerClick = this.innerClick.bind(this)
@@ -56,6 +56,9 @@ export default class MenuItem extends React.Component<PropsMenuItems, IState> {
             isOpen:this.state.isOpen
         }
         this.setState(d);
+    }
+    public GetHtmlDiv(){
+        return this.mRefMenuItem.current
     }
 
     public SpliceItems(start:number,count?:number){
@@ -86,34 +89,34 @@ export default class MenuItem extends React.Component<PropsMenuItems, IState> {
         }
     }
 
-    innerClick() {
+    private innerClick() {
         if (this.props.onClick) {
             this.props.onClick(this)
         }
     }
 
-    getContent() {
+    private getContent() {
         if (this.props.href) {
-            return (<a onClick={this.innerClick}
-                       className={'bsr-menu-link'} href={this.props.href}>{this.props.content}</a>)
+            return (<a onClick={this.innerClick} style={this.props.style}
+                       className={'bsr-menu-link'}  href={this.props.href}>{this.props.content}</a>)
         } else {
 
-            return <div onClick={this.innerClick} className={'bsr-menu-link'}>{this.props.content}</div>
+            return <div onClick={this.innerClick} style={this.props.style} className={'bsr-menu-link'}>{this.props.content}</div>
         }
     }
 
-    omMouseOver() {
+    private omMouseOver() {
         if (this.mRefPopup.current) {
             this.mRefPopup.current.style.visibility = 'visible'
-            if (this.props.dropPosition === 'right' && this.mRefLi.current) {
-                let d = "" + this.mRefLi.current?.offsetWidth + "px"
-                let h = "" + this.mRefLi.current?.offsetTop  + "px"
+            if (this.props.dropPosition === 'right' && this.mRefMenuItem.current) {
+                let d = "" + this.mRefMenuItem.current?.offsetWidth + "px"
+                let h = "" + this.mRefMenuItem.current?.offsetTop  + "px"
                 this.mRefPopup.current.style.marginLeft = d;
                 this.mRefPopup.current.style.top = h;
             }
-            if (this.props.dropPosition === 'left' && this.mRefLi.current) {
+            if (this.props.dropPosition === 'left' && this.mRefMenuItem.current) {
                 let d = "-" + this.mRefPopup.current?.offsetWidth + "px"
-                let h = "" + this.mRefLi.current?.offsetTop  + "px"
+                let h = "" + this.mRefMenuItem.current?.offsetTop  + "px"
                 this.mRefPopup.current.style.marginLeft = d;
                 this.mRefPopup.current.style.top = h;
             }
@@ -126,7 +129,7 @@ export default class MenuItem extends React.Component<PropsMenuItems, IState> {
         }
     }
 
-    omMouseOut() {
+    private omMouseOut() {
         if (this.mRefPopup.current) {
             this.mRefPopup.current.style.visibility = 'hidden'
             if (this.props.iconOpen && this.props.iconClose) {
@@ -137,7 +140,7 @@ export default class MenuItem extends React.Component<PropsMenuItems, IState> {
         }
     }
 
-    getInnerLi() {
+    private getInnerLi() {
 
         if (this.props.dropPosition === 'left') {
             return <>
@@ -155,12 +158,12 @@ export default class MenuItem extends React.Component<PropsMenuItems, IState> {
 
     }
 
-    getLi() {
+    private getLi() {
         if (this.props.iconOpen && this.props.iconClose) {
 
-            return <div ref={this.mRefLi}
+            return <div ref={this.mRefMenuItem}
                         id={this.id}
-                        style={this.props.style}
+
                         onMouseOver={this.omMouseOver}
                         onMouseOut={this.omMouseOut}
                         className={'menu-item bsr-container-item'}>
@@ -170,9 +173,9 @@ export default class MenuItem extends React.Component<PropsMenuItems, IState> {
             </div>
         } else {
 
-            return <div ref={this.mRefLi}
+            return <div ref={this.mRefMenuItem}
                         className={this.props.className ?? "menu-item"}
-                        style={this.props.style}
+
                         id={this.id}
                         onMouseOver={this.omMouseOver}
                         onMouseOut={this.omMouseOut}>{this.getContent()}</div>
@@ -180,24 +183,23 @@ export default class MenuItem extends React.Component<PropsMenuItems, IState> {
 
     }
 
-    getRoot() {
-        if (this.state.list.length == 0) {
+    private getRoot() {
+        if (this.state.list.length === 0) {
             return <div
-                ref={this.mRefLi}
-                style={this.props.style}
+                ref={this.mRefMenuItem}
+
                 id={this.id}
                 className={this.props.className ?? "menu-item"}>{this.getContent()}</div>;
         } else {
-            return <div style={{height: "100%"}}>
+            return <div
+                id={this.id}
+                style={{height: "100%"}}>
                 {this.getLi()}
                 <div ref={this.mRefPopup} style={{position: "absolute", visibility: "hidden"}}
                      onMouseOut={this.omMouseOut}
                      onMouseOver={this.omMouseOver}>
                     {
                         this.state.list
-                        // Children.map(this.props.children, child =>
-                        //     <>{child}</>
-                        // )
                     }
                 </div>
             </div>;

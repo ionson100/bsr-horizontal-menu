@@ -1,41 +1,78 @@
-{
-  "name": "bsr-horizontal-menu",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "cra-template-typescript": "1.2.0",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "react-scripts": "5.0.1"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
+ {
+    "name": "bsr-horizontal-menu",
+    "version": "0.0.1",
+    "description": "React component horizontal menu ",
+    "author": "ionson100",
+    "license": "MIT",
+    "keywords": [
+      "react",
+      "component",
+      "horizontal",
+      "menu"
     ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "devDependencies": {
-    "@types/react": "^19.0.7",
-    "@types/react-dom": "^19.0.3",
-    "react-icons": "^5.4.0",
-    "uuid": "^11.0.5"
+    "repository": "https://github.com/ionson100/bsr-horizontal-menu",
+    "main": "dist/cjs/index.js",
+    "module": "dist/esm/index.js",
+    "types": "dist/index.d.ts",
+    "homepage": "https://github.com/ionson100/bsr-horizontal-menu",
+    "files": [
+      "dist",
+      "README.md"
+    ],
+    "peerDependencies": {
+      "react": "^18.3.1",
+      "react-dom": "^18.3.1"
+    },
+    "scripts": {
+      "build": "rollup -c --bundleConfigAsCjs && @powershell copy  src/menuDist/index.css ./dist"
+    },
+    "eslintConfig": {
+      "extends": [
+        "react-app",
+        "react-app/jest"
+      ]
+    },
+    "browserslist": {
+      "production": [
+        ">0.2%",
+        "not dead",
+        "not op_mini all"
+      ],
+      "development": [
+        "last 1 chrome version",
+        "last 1 firefox version",
+        "last 1 safari version"
+      ]
+    },
+    "devDependencies": {
+      "ol": "^10.2.1",
+      "@rollup/plugin-commonjs": "^25.0.7",
+      "@rollup/plugin-node-resolve": "^15.2.3",
+      "@rollup/plugin-terser": "^0.4.4",
+      "@rollup/plugin-typescript": "^11.1.6",
+      "@testing-library/jest-dom": "^5.17.0",
+      "@testing-library/react": "^13.4.0",
+      "@testing-library/user-event": "^13.5.0",
+      "@types/jest": "^27.5.2",
+      "@types/node": "^16.18.97",
+      "@types/react": "^18.3.2",
+      "@types/react-dom": "^18.3.0",
+      "@types/uuid": "^10.0.0",
+      "eslint": "^7.32.0",
+      "eslint-plugin-react": "^7.26.1",
+      "postcss": "^8.4.38",
+      "postcss-modules": "^6.0.0",
+      "react": "^18.3.1",
+      "react-dom": "^18.3.1",
+      "react-scripts": "5.0.1",
+      "rollup": "^4.17.2",
+      "rollup-plugin-css-only": "^4.5.2",
+      "rollup-plugin-dts": "^6.1.0",
+      "rollup-plugin-import-css": "^3.5.0",
+      "rollup-plugin-lib-style": "^1.2.6",
+      "rollup-plugin-peer-deps-external": "^2.2.4",
+      "rollup-plugin-postcss": "^4.0.2",
+      "typescript": "^4.9.5",
+      "uuid": "^10.0.0"
+    }
   }
-}

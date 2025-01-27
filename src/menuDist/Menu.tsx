@@ -3,6 +3,7 @@ import MenuItem from "./MenuItem";
 
 export type PropsMenu = {
     style?: React.CSSProperties | undefined
+    id?:string|undefined
     className?: string | undefined,
     children?: React.ReactElement<MenuItem>[] |React.ReactElement<MenuItem>| undefined,
 }
@@ -62,6 +63,10 @@ export default class Menu extends React.Component<PropsMenu, IPropMenu> {
 
 
     render() {
-        return  <div className="bsr-menu">{this.state.list}</div>
+        return  <div
+            className={this.props.className??"bsr-menu"}
+            style={this.props.style}
+            id={this.props.id}
+        >{this.state.list}</div>
     }
 }

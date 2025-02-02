@@ -13,8 +13,8 @@ npm install --save bsr-horizontal-menu
 ## Usage
 
 ```tsx
-import {Menu, MenuItem} from "./menuDist";
-import './menuDist/index.css'
+import {Menu, MenuItem} from "bsr-horizontal-menu";
+import 'bsr-horizontal-menu/dist/index.css'
 
 export default function App(){
     return(

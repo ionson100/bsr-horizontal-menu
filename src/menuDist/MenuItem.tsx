@@ -195,7 +195,7 @@ export default class MenuItem extends React.Component<PropsMenuItems, IState> {
                 id={this.id}
                 style={{height: "100%"}}>
                 {this.getLi()}
-                <div ref={this.mRefPopup} style={{position: "absolute", visibility: "hidden"}}
+                <div ref={this.mRefPopup} className={'bsr-popup'} style={{ visibility: "hidden"}}
                      onMouseOut={this.omMouseOut}
                      onMouseOver={this.omMouseOver}>
                     {

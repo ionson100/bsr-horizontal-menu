@@ -289,7 +289,7 @@ var MenuItem = /** @class */ (function (_super) {
         else {
             return React.createElement("div", { id: this.id, style: { height: "100%" } },
                 this.getLi(),
-                React.createElement("div", { ref: this.mRefPopup, style: { position: "absolute", visibility: "hidden" }, onMouseOut: this.omMouseOut, onMouseOver: this.omMouseOver }, this.state.list));
+                React.createElement("div", { ref: this.mRefPopup, className: 'bsr-popup', style: { visibility: "hidden" }, onMouseOut: this.omMouseOut, onMouseOver: this.omMouseOver }, this.state.list));
         }
     };
     MenuItem.prototype.render = function () {

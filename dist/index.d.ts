@@ -22,7 +22,7 @@ declare class MenuItem extends React.Component<PropsMenuItems, IState> {
     readonly id: string;
     href?: string | undefined;
     constructor(props: Readonly<PropsMenuItems>);
-    AddItems(...item: React.ReactElement<MenuItem>[]): void;
+    AddIMenuItems(...item: React.ReactElement<MenuItem>[]): void;
     ClearItems(): void;
     GetHtmlDiv(): HTMLDivElement | null;
     SpliceItems(start: number, count?: number): void;

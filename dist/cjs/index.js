@@ -53,7 +53,9 @@ var Menu = /** @class */ (function (_super) {
             item[_i] = arguments[_i];
         }
         var d = this.state.list;
-        d.push(item);
+        item.forEach(function (i) {
+            d.push(i);
+        });
         this.setState({
             list: d
         });
@@ -167,7 +169,7 @@ var MenuItem = /** @class */ (function (_super) {
         _this.href = _this.props.href;
         return _this;
     }
-    MenuItem.prototype.AddItems = function () {
+    MenuItem.prototype.AddIMenuItems = function () {
         var item = [];
         for (var _i = 0; _i < arguments.length; _i++) {
             item[_i] = arguments[_i];
@@ -176,8 +178,9 @@ var MenuItem = /** @class */ (function (_super) {
             list: this.state.list,
             isOpen: this.state.isOpen
         };
-        d.list.push(item);
-        console.log(d.list);
+        item.forEach(function (i) {
+            d.list.push(i);
+        });
         this.setState(d);
     };
     MenuItem.prototype.ClearItems = function () {

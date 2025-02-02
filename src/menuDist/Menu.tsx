@@ -24,7 +24,10 @@ export default class Menu extends React.Component<PropsMenu, IPropMenu> {
     }
     public AddMenuItems(...item:ReactElement<MenuItem>[]){
         let d = this.state.list;
-        d.push(item)
+        item.forEach(i=>{
+            d.push(i)
+        })
+
         this.setState({
             list:d
         })
@@ -51,6 +54,7 @@ export default class Menu extends React.Component<PropsMenu, IPropMenu> {
                 if(r){
                     if(r.props.id===id){
                         startIndex=i;
+
                         break
                     }
                 }

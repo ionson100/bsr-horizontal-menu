@@ -41,13 +41,14 @@ export default class MenuItem extends React.Component<PropsMenuItems, IState> {
         this.id = this.props.id ?? uuidv4()
         this.href = this.props.href
     }
-    public AddItems(...item:React.ReactElement<MenuItem>[]){
+    public AddIMenuItems(...item:React.ReactElement<MenuItem>[]){
         let d:IState={
             list:this.state.list,
             isOpen:this.state.isOpen
         }
-        d.list.push(item)
-        console.log(d.list)
+        item.forEach(i=>{
+            d.list.push(i)
+        })
         this.setState(d);
     }
     public ClearItems(){
